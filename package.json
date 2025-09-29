@@ -2,6 +2,7 @@
   "name": "Portfolio Website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vrdhsbn.github.io/figma-make-sample1/",
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
