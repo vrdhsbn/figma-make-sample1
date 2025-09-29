@@ -1,49 +1,38 @@
-import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import { toast } from "sonner";
+import { useState } from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Label } from './ui/label';
+import { toast } from 'sonner';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    subject: "",
-    message: "",
+    name: '',
+    email: '',
+    company: '',
+    subject: '',
+    message: ''
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // ここで実際のフォーム送信処理を実装
-    toast.success(
-      "お問い合わせを受け付けました。3営業日以内にご連絡いたします。",
-    );
+    toast.success('お問い合わせを受け付けました。3営業日以内にご連絡いたします。');
     setFormData({
-      name: "",
-      email: "",
-      company: "",
-      subject: "",
-      message: "",
+      name: '',
+      email: '',
+      company: '',
+      subject: '',
+      message: ''
     });
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >,
-  ) => {
-    setFormData((prev) => ({
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
 
@@ -51,9 +40,7 @@ export default function Contact() {
     <section id="contact" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 text-gray-900">
-            Contact
-          </h2>
+          <h2 className="text-4xl md:text-5xl mb-6 text-gray-900">Contact</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             プロジェクトのご相談、お見積もり、その他ご質問がございましたら、
             お気軽にお問い合わせください。
@@ -70,12 +57,8 @@ export default function Contact() {
                     <Mail className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-gray-900">
-                      メール
-                    </h3>
-                    <p className="text-gray-600">
-                      contact@example.com
-                    </p>
+                    <h3 className="mb-1 text-gray-900">メール</h3>
+                    <p className="text-gray-600">contact@example.com</p>
                   </div>
                 </div>
               </CardContent>
@@ -89,9 +72,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="mb-1 text-gray-900">電話</h3>
-                    <p className="text-gray-600">
-                      090-XXXX-XXXX
-                    </p>
+                    <p className="text-gray-600">090-XXXX-XXXX</p>
                   </div>
                 </div>
               </CardContent>
@@ -104,9 +85,7 @@ export default function Contact() {
                     <MapPin className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-gray-900">
-                      所在地
-                    </h3>
+                    <h3 className="mb-1 text-gray-900">所在地</h3>
                     <p className="text-gray-600">東京都内</p>
                   </div>
                 </div>
@@ -114,9 +93,7 @@ export default function Contact() {
             </Card>
 
             <div className="bg-blue-50 p-6 rounded-lg">
-              <h3 className="mb-3 text-blue-900">
-                対応可能な案件
-              </h3>
+              <h3 className="mb-3 text-blue-900">対応可能な案件</h3>
               <ul className="text-blue-800 space-y-2">
                 <li>• Webアプリケーション開発</li>
                 <li>• モバイルアプリ開発</li>
@@ -131,15 +108,10 @@ export default function Contact() {
           <div className="lg:col-span-2">
             <Card className="border-gray-200">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-900">
-                  お問い合わせフォーム
-                </CardTitle>
+                <CardTitle className="text-2xl text-gray-900">お問い合わせフォーム</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                >
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="name">お名前 *</Label>
@@ -155,9 +127,7 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">
-                        メールアドレス *
-                      </Label>
+                      <Label htmlFor="email">メールアドレス *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -200,9 +170,7 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <Label htmlFor="message">
-                      メッセージ *
-                    </Label>
+                    <Label htmlFor="message">メッセージ *</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -214,8 +182,8 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button
-                    type="submit"
+                  <Button 
+                    type="submit" 
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3"
                   >
                     <Send className="h-5 w-5 mr-2" />
@@ -225,10 +193,8 @@ export default function Contact() {
 
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                   <p className="text-sm text-gray-600">
-                    ※
-                    お問い合わせ後、3営業日以内にご連絡いたします。
-                    <br />※
-                    お急ぎの場合は、お電話でのお問い合わせもお受けしています。
+                    ※ お問い合わせ後、3営業日以内にご連絡いたします。<br />
+                    ※ お急ぎの場合は、お電話でのお問い合わせもお受けしています。
                   </p>
                 </div>
               </CardContent>

@@ -1,7 +1,13 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { Button } from './ui/button';
+import { CurrentPage } from './types';
 
-export default function Footer() {
+interface FooterProps {
+  currentPage?: CurrentPage;
+  onNavigate?: (page: CurrentPage) => void;
+}
+
+export default function Footer({ currentPage = 'home', onNavigate }: FooterProps) {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +27,16 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <button 
-                  onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    if (currentPage !== 'home') {
+                      onNavigate?.('home');
+                      setTimeout(() => {
+                        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    } else {
+                      document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   About
@@ -29,7 +44,16 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    if (currentPage !== 'home') {
+                      onNavigate?.('home');
+                      setTimeout(() => {
+                        document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    } else {
+                      document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Skills
@@ -37,7 +61,16 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    if (currentPage !== 'home') {
+                      onNavigate?.('home');
+                      setTimeout(() => {
+                        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    } else {
+                      document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Portfolio
@@ -45,7 +78,24 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => onNavigate?.('blog')}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Blog
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    if (currentPage !== 'home') {
+                      onNavigate?.('home');
+                      setTimeout(() => {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    } else {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   Contact

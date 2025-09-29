@@ -1,15 +1,36 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { CurrentPage } from './types';
 
-export default function Header() {
+interface HeaderProps {
+  currentPage: CurrentPage;
+  onNavigate: (page: CurrentPage) => void;
+}
+
+export default function Header({ currentPage, onNavigate }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage !== 'home') {
+      onNavigate('home');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+    setIsMenuOpen(false);
+  };
+
+  const handleNavigation = (page: CurrentPage) => {
+    onNavigate(page);
     setIsMenuOpen(false);
   };
 
@@ -17,9 +38,12 @@ export default function Header() {
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-semibold text-gray-900">
+          <button 
+            onClick={() => handleNavigation('home')}
+            className="text-2xl font-semibold text-gray-900 hover:text-blue-600 transition-colors"
+          >
             Portfolio
-          </div>
+          </button>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
@@ -39,7 +63,13 @@ export default function Header() {
               onClick={() => scrollToSection('portfolio')}
               className="text-gray-600 hover:text-blue-600 transition-colors"
             >
-              Works
+              Portfolio
+            </button>
+            <button
+              onClick={() => handleNavigation('blog')}
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              Blog
             </button>
             <button
               onClick={() => scrollToSection('contact')}
@@ -81,7 +111,13 @@ export default function Header() {
                 onClick={() => scrollToSection('portfolio')}
                 className="text-gray-600 hover:text-blue-600 transition-colors text-left"
               >
-                Works
+                Portfolio
+              </button>
+              <button
+                onClick={() => handleNavigation('blog')}
+                className="text-gray-600 hover:text-blue-600 transition-colors text-left"
+              >
+                Blog
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
